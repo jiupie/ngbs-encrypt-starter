@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wl.core.encrypt.config.SignEncryptConfiguration
+
+

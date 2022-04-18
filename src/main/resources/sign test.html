@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <title>sign生成</title>
+</head>
+<body>
+<script>
+    //获取时间戳
+    var timestamp = Date.parse(new Date());
+    var timestampStr = timestamp + 100
+    console.log(timestampStr);
+    //md5加密 并转为16进制
+    var v1 = md5("name=dsdfa&sex=1&timestamp=" + timestampStr + "&secret=s1x4s5a6s5x4d5xz");
+    console.log(v1);
+</script>
+
+参数名称：<input type="text" id="params"/>
+<button onclick="refresh(this)">生成</button>
+<p id="res"></p>
+
+</body>
+<script>
+    function refresh(e) {
+        //获取时间戳
+        var timestamp = Date.parse(new Date());
+        var timestampStr = timestamp + 100
+
+        var params = document.getElementById("params");
+
+        //md5加密 并转为16进制
+        var sign = md5(params.value + "&timestamp=" + timestampStr + "&secret=s1x4s5a6s5x4d5xz");
+
+
+        var res = document.getElementById("res");
+
+        var resStr = "timestamp:" + timestampStr+"\n";
+        resStr += "sign:" + sign;
+        res.innerText = resStr;
+    }
+
+
+</script>
+</html>
