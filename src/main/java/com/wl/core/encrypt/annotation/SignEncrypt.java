@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Documented
 public @interface SignEncrypt {
 
-    long timeout() default 60000L;
+    long timeout() default 6000L;
 
     TimeUnit timeUnit() default TimeUnit.MILLISECONDS;
 

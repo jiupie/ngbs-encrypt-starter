@@ -4,12 +4,15 @@ import com.wl.core.encrypt.enums.EncryptType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- *
  * @author 南顾北衫
  * @email 17674641491@163.com
  */
 @ConfigurationProperties(prefix = "encrypt")
 public class EncryptProperties {
+    /**
+     * 是否启用加密接口数据
+     */
+    private Boolean enable;
     /**
      * 加密类型 AES BASE64 CUSTOM RSA
      */
@@ -44,7 +47,7 @@ public class EncryptProperties {
     /**
      * 加密过滤器 order属性
      */
-    private Integer order=0;
+    private Integer order = 0;
 
     public EncryptType getType() {
         return type;
@@ -100,5 +103,13 @@ public class EncryptProperties {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }

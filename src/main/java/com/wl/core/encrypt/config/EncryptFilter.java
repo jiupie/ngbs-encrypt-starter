@@ -20,7 +20,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author 南顾北衫
  */
-
 public class EncryptFilter implements Filter {
     private final Logger log = LoggerFactory.getLogger(EncryptFilter.class);
     private EncryptHandler encryptHandler;
@@ -41,13 +40,7 @@ public class EncryptFilter implements Filter {
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         } else {
-            HttpServletRequest request = (HttpServletRequest) servletRequest;
-            String contentType = request.getContentType();
-            if (request.getRequestURI().startsWith("/actuator") || contentType == null || !contentType.toLowerCase().equals(MediaType.APPLICATION_JSON_VALUE)) {
-                filterChain.doFilter(servletRequest, servletResponse);
-            } else {
-                this.chain(servletRequest, servletResponse, filterChain);
-            }
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
@@ -59,13 +52,12 @@ public class EncryptFilter implements Filter {
         if (responseData.length == 0) {
             return;
         }
-        log.info("接收的报文：" + new String(responseData));
+        log.info("响应原报文：" + new String(responseData));
         byte[] encryptByte = encryptHandler.encode(URLEncoder.encode(new String(responseData), "UTF-8").getBytes());
-        log.info("加密后的报文：" + new String(encryptByte));
+        log.info("加密后响应报文：" + new String(encryptByte));
         servletResponse.setContentLength(-1);
         servletResponse.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         ServletOutputStream outputStream = servletResponse.getOutputStream();
-        log.info("outputStream: " + outputStream.toString());
         outputStream.write(encryptByte);
         outputStream.flush();
     }

@@ -18,8 +18,7 @@ import org.springframework.context.annotation.Bean;
  *
  * @author gaoyang
  */
-@ConditionalOnExpression(value = "environment.getProperty('encrypt.signSecret')!=null && " +
-        "environment.getProperty('encrypt.signSecret').trim()!=''")
+@ConditionalOnExpression(value = "environment.getProperty('encrypt.signSecret')!=null && " + "environment.getProperty('encrypt.signSecret').trim()!=''")
 public class SignEncryptConfiguration {
 
     @Autowired
@@ -35,7 +34,7 @@ public class SignEncryptConfiguration {
     @Bean
     public DefaultPointcutAdvisor sortSignEncryptAdvisor(@Value("${encrypt.signSecret}") String sortSignSecret) {
         SignEncryptInterceptor interceptor = new SignEncryptInterceptor(sortSignSecret, signEncryptHandler);
-         AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(null, SignEncrypt.class);
+        AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(null, SignEncrypt.class);
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
         advisor.setPointcut(pointcut);
         advisor.setAdvice(interceptor);

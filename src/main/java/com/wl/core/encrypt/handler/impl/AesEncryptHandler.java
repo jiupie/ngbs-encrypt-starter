@@ -49,7 +49,7 @@ public class AesEncryptHandler implements EncryptHandler {
             byte[] byteContent = Base64Utils.decode(content);
             return cipher.doFinal(byteContent);
         } catch (Exception e) {
-            throw new EncryptException("rsa加密错误", e);
+            throw new EncryptException("rsa解密错误", e);
         }
     }
 

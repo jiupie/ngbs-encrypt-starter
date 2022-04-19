@@ -12,6 +12,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
@@ -25,6 +26,7 @@ import org.springframework.core.env.Environment;
  * @author gaoyang
  */
 @Configuration
+@ConditionalOnProperty(prefix = "encrypt", name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableAutoConfiguration
 public class EncryptConfiguration implements ApplicationContextAware, BeanFactoryPostProcessor, EnvironmentAware {
     private ApplicationContext applicationContext;
@@ -87,12 +89,12 @@ public class EncryptConfiguration implements ApplicationContextAware, BeanFactor
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext=applicationContext;
+        this.applicationContext = applicationContext;
     }
 
     @Override
     public void setEnvironment(Environment environment) {
-        this.environment=environment;
+        this.environment = environment;
 
     }
 }
