@@ -14,7 +14,7 @@
 
 ## 使用
 
-测试项目地址：https://gitee.com/nangubeisan/ngbs-encrypt-test
+测试项目地址：https://github.com/jiupie/ngbs-encrypt-test
 
 1.下载源码，编译，`mvn install`到本地，在自己的项目中引入该starter坐标
 

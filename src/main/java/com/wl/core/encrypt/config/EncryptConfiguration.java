@@ -95,6 +95,5 @@ public class EncryptConfiguration implements ApplicationContextAware, BeanFactor
     @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
-
     }
 }
